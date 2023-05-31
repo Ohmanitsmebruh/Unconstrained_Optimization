@@ -10,7 +10,7 @@ def grad_f(x, y):
 
 
 
-def descente(Points, lamb=[0.001,0.002,0.003,0.004,0.005], eps=1e-5, maxIter=2000):
+def descente(Points, lamb=[0.001,0.002,0.003,0.004,0.09], eps=1e-5, maxIter=2000):
     minValue = -0.1510416
     error = np.array([0.0002, 0.0005, 0.001])
     opt = np.empty((0, 3))
@@ -30,8 +30,8 @@ def descente(Points, lamb=[0.001,0.002,0.003,0.004,0.005], eps=1e-5, maxIter=200
         while abs(grad) > eps:
             gradx, grady = grad_f(x, y)
             grad = math.sqrt(gradx ** 2 + grady ** 2)
-            x = x - lamb[0] * gradx
-            y = y - lamb[0] * grady
+            x = x - lamb[4] * gradx #changeable lamda values
+            y = y - lamb[4] * grady #changeable lamda values
             i += 1
             total = f(x , y)
             Optimalitygap = total - minValue
@@ -97,13 +97,8 @@ def descente(Points, lamb=[0.001,0.002,0.003,0.004,0.005], eps=1e-5, maxIter=200
 
 
 
-x_values = []
-y_values = []
-for i in range(3):
-    x = int(input("Point " + str(i+1) + ": x "))
-    y = int(input("Point " + str(i+1) + ": y "))
-    x_values.append(x)
-    y_values.append(y)
+x_values = [23,11,-5]
+y_values = [4,21,-80]
 
 Points = [[x, y] for x, y in zip(x_values, y_values)]
 
